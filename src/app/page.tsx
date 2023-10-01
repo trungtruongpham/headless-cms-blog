@@ -53,7 +53,7 @@ export default async function Home() {
 
   const postUI = posts.map((post: any, index: any) => {
     return (
-      <Link href={"post/" + post.slug} id={index} className="bg-blue-grey rounded-xl p-4 pt-0 border border-transparent hover:border-white hover:cursor-pointer">
+      <Link href={"post/" + post.slug} key={index} id={index} className="bg-blue-grey rounded-xl p-4 pt-0 border border-transparent hover:border-white hover:cursor-pointer">
         <div className="pb-4">
           <p>{post.title}</p>
         </div>

@@ -41,12 +41,12 @@ export async function generateStaticParams() {
   
   // @ts-ignore
   return posts.posts.map((post: any) => {
-    slug: post.slug;
+    post.slug;
   });
 }
 
-export async function getPostBySlug(slug: string) {
-  const res = await graphQLClient.request(
+ async function getPostBySlug(slug: string) {
+  const res : any = await graphQLClient.request(
     `
     query Assets($slug: String!){
     post(where: {slug: $slug}) {
@@ -83,13 +83,13 @@ export async function getPostBySlug(slug: string) {
   );
 
   console.log(res);
-  // @ts-ignore
+  
   return res.post;
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
   console.log(params.slug);
-  const post = await getPostBySlug(params.slug);
+  const post: any = await getPostBySlug(params.slug);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:py-4">
