@@ -13,19 +13,19 @@ function NavBar() {
   return (
     <nav className="p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white font-bold text-xl bg-slate-300 rounded-full p-2">
-          <Link href="/" className="text-black">TT</Link>
+        <div className="text-white font-extrabold text-xl bg-slate-300 p-2 rounded-full cursor-pointer">
+          <Link href="/" className="text-black font-bold hover:no-underline rounded-full">TT</Link>
         </div>
         <div className="hidden md:flex space-x-6">
-          <a href="#" className="text-white hover:text-gray-300">
+          <Link href="/" className="text-white font-semibold hover:text-gray-300 hover:underline hover:underline-offset-4 hover:duration-700">
             Home
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
+          </Link>
+          <Link href="/about" className="text-white font-semibold hover:text-gray-300 hover:underline hover:underline-offset-4 hover:duration-700">
             About
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
+          </Link>
+          <Link href="/contact" className="text-white font-semibold hover:text-gray-300 hover:underline hover:underline-offset-4 hover:duration-700">
             Contact
-          </a>
+          </Link>
         </div>
         <div className="md:hidden">
           <button
@@ -72,19 +72,19 @@ function NavBar() {
         <div className="pt-2 md:hidden">
           <ul className="">
             <li>
-              <a href="#" className="block py-2 text-white">
+              <Link href="/" className="block font-semibold py-2 text-white">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 text-white">
+              <Link href="/about" className="block font-semibold py-2 text-white">
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2 text-white">
+              <Link href="/contact" className="block font-semibold py-2 text-white">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -2,8 +2,10 @@ import { GraphQLClient } from "graphql-request";
 import Image from "next/image";
 import Link from "next/link";
 
+var graphQLClientEndPoint = process.env.HYGRAPH_API_ENDPOINT ?? "";
+
 const graphQLClient = new GraphQLClient(
-  "https://api-ap-northeast-1.hygraph.com/v2/cll95uidc153j01udhwzz0tn9/master"
+  graphQLClientEndPoint
 );
 
 async function getData() {
@@ -53,9 +55,9 @@ export default async function Home() {
 
   const postUI = posts.map((post: any, index: any) => {
     return (
-      <Link href={"post/" + post.slug} key={index} id={index} className="bg-blue-grey rounded-xl p-4 pt-0 border border-transparent hover:border-white hover:cursor-pointer">
-        <div className="pb-4">
-          <p>{post.title}</p>
+      <Link href={"post/" + post.slug} key={index} id={index} className="bg-blue-grey rounded-xl p-4 pt-0 border border-transparent hover:border-white hover:cursor-pointer hover:no-underline">
+        <div className="pb-4 text-white">
+          <p className="font-semibold">{post.title}</p>
         </div>
         <div className="relative">
           <Image

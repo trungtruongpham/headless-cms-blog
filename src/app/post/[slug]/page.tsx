@@ -1,8 +1,10 @@
 import { GraphQLClient } from "graphql-request";
 import Image from "next/image";
 
+var graphQLClientEndPoint = process.env.HYGRAPH_API_ENDPOINT ?? "";
+
 const graphQLClient = new GraphQLClient(
-  "https://api-ap-northeast-1.hygraph.com/v2/cll95uidc153j01udhwzz0tn9/master"
+  graphQLClientEndPoint
 );
 
 export async function generateStaticParams() {
@@ -38,15 +40,15 @@ export async function generateStaticParams() {
     }
   `
   );
-  
+
   // @ts-ignore
   return posts.posts.map((post: any) => {
     post.slug;
   });
 }
 
- async function getPostBySlug(slug: string) {
-  const res : any = await graphQLClient.request(
+async function getPostBySlug(slug: string) {
+  const res: any = await graphQLClient.request(
     `
     query Assets($slug: String!){
     post(where: {slug: $slug}) {
@@ -83,7 +85,7 @@ export async function generateStaticParams() {
   );
 
   console.log(res);
-  
+
   return res.post;
 }
 
@@ -93,8 +95,8 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:py-4">
-      <h1>{post.title}</h1>
-      <div className="max-w-sm h-96 w-96 md:max-w-full md:w-full md:max-h-auto relative md:rounded-md">
+      <h1 className="text-3xl font-bold py-8">{post.title}</h1>
+      <div className="max-w-sm h-96 w-96 my-4 md:max-w-full md:w-full md:max-h-auto relative md:rounded-md">
         <Image
           src={post.coverImage.url}
           alt={post.coverImage.altText}
@@ -106,7 +108,10 @@ export default async function Post({ params }: { params: { slug: string } }) {
           fill
         ></Image>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
+      <div
+        dangerouslySetInnerHTML={{ __html: post.content.html }}
+        className="prose dark:prose-invert max-w-none"
+      ></div>
     </main>
   );
 }
